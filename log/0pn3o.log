@@ -1,0 +1,381 @@
+[2019-03-25 17:24:56] ### INFO ### Logger initialized, logging to log/0pn3o.log
+[2019-03-25 17:24:56] ### INFO ### PyPath has been initialized
+[2019-03-25 17:24:56] ### INFO ### Beginning session '0pn3o'
+[2019-03-25 17:24:57] ### INFO ###### Retrieving data by dataio.trip_interactions() ...
+[2019-03-25 17:25:02] ### ERROR ###### trip_interactions: No such file or dataio function! :(
+
+[2019-03-25 17:25:02] ### INFO ###### attach_network(): No data, nothing to do.
+[2019-03-25 17:25:02] ### INFO ###### Retrieving data by dataio.spike_interactions() ...
+[2019-03-25 17:25:04] ### INFO ### Loading mapping tables...
+[2019-03-25 17:25:04] ### INFO ###### Loading table ('genesymbol', 'uniprot') ...
+[2019-03-25 17:25:04] ### INFO ###### Table ('genesymbol', 'uniprot') loaded from UniprotMapping.
+[2019-03-25 17:25:04] ### INFO ### Loading mapping tables...
+[2019-03-25 17:25:04] ### INFO ###### Loading table ('uniprot-sec', 'uniprot-pri') ...
+[2019-03-25 17:25:04] ### INFO ###### Table ('uniprot-sec', 'uniprot-pri') loaded from FileMapping.
+[2019-03-25 17:25:04] ### INFO ### Loading mapping tables...
+[2019-03-25 17:25:04] ### INFO ###### Loading table ('genesymbol', 'trembl') ...
+[2019-03-25 17:25:05] ### INFO ###### Table ('genesymbol', 'trembl') loaded from UniprotMapping.
+[2019-03-25 17:25:05] ### INFO ### Loading mapping tables...
+[2019-03-25 17:25:05] ### INFO ###### Loading table ('genesymbol-syn', 'uniprot') ...
+[2019-03-25 17:25:05] ### INFO ###### Table ('genesymbol-syn', 'uniprot') loaded from UniprotMapping.
+[2019-03-25 17:25:05] ### INFO ###### 3841 lines have been read from spike_interactions,3720 links after mapping; 
+		0 lines filtered by filters;
+		7 lines filtered because lack of references;
+		0 lines filtered by taxon filters.
+[2019-03-25 17:25:05] ### INFO ###### Mapped edge list saved to /home/moonstrider/.pypath/cache/spike.edges.pickle
+[2019-03-25 17:25:05] ### INFO ###### New nodes have been created
+[2019-03-25 17:25:05] ### INFO ###### New edges have been created
+[2019-03-25 17:25:05] ### INFO ###### Introducing new node and edge attributes...
+[2019-03-25 17:25:05] ### WARNING ###### Vertex attribute `exp` has only None values
+[2019-03-25 17:25:05] ### WARNING ###### Vertex attribute `sources` has only None values
+[2019-03-25 17:25:05] ### WARNING ###### Vertex attribute `references` has only None values
+[2019-03-25 17:25:05] ### WARNING ###### Edge attribute `negative` has only None values
+[2019-03-25 17:25:05] ### WARNING ###### Edge attribute `spike_effect` has multiple types of values: set, str
+[2019-03-25 17:25:05] ### WARNING ###### Edge attribute `spike_mechanism` has multiple types of values: set, str
+[2019-03-25 17:25:05] ### WARNING ###### Edge attribute `negative_refs` has only None values
+[2019-03-25 17:25:05] ### INFO ###### Retrieving data by dataio.signalink_interactions() ...
+[2019-03-25 17:25:06] ### INFO ### Loading mapping tables...
+[2019-03-25 17:25:06] ### INFO ###### Loading table ('genesymbol', 'swissprot') ...
+[2019-03-25 17:25:06] ### INFO ###### Table ('genesymbol', 'swissprot') loaded from UniprotMapping.
+[2019-03-25 17:25:06] ### INFO ### Loading mapping tables...
+[2019-03-25 17:25:06] ### INFO ###### Loading table ('genesymbol-syn', 'swissprot') ...
+[2019-03-25 17:25:06] ### INFO ###### Table ('genesymbol-syn', 'swissprot') loaded from UniprotMapping.
+[2019-03-25 17:25:06] ### INFO ###### 6993 lines have been read from signalink_interactions,6943 links after mapping; 
+		0 lines filtered by filters;
+		6 lines filtered because lack of references;
+		0 lines filtered by taxon filters.
+[2019-03-25 17:25:06] ### INFO ###### Mapped edge list saved to /home/moonstrider/.pypath/cache/signalink3.edges.pickle
+[2019-03-25 17:25:06] ### INFO ###### New nodes have been created
+[2019-03-25 17:25:06] ### INFO ###### New edges have been created
+[2019-03-25 17:25:06] ### INFO ###### Introducing new node and edge attributes...
+[2019-03-25 17:25:07] ### WARNING ###### Vertex attribute `exp` has only None values
+[2019-03-25 17:25:07] ### WARNING ###### Edge attribute `netbiol_mechanism` has multiple types of values: set, str
+[2019-03-25 17:25:07] ### WARNING ###### Edge attribute `netbiol_effect` has multiple types of values: set, str
+[2019-03-25 17:25:07] ### WARNING ###### Edge attribute `netbiol_is_direct` has multiple types of values: set, str
+[2019-03-25 17:25:07] ### WARNING ###### Edge attribute `negative_refs` has only None values
+[2019-03-25 17:25:07] ### WARNING ###### Edge attribute `negative` has only None values
+[2019-03-25 17:25:07] ### INFO ###### Retrieving data by dataio.guide2pharma() ...
+[2019-03-25 17:25:07] ### INFO ###### -1 lines have been read from guide2pharma,0 links after mapping; 
+		0 lines filtered by filters;
+		0 lines filtered because lack of references;
+		0 lines filtered by taxon filters.
+[2019-03-25 17:25:07] ### INFO ###### Mapped edge list saved to /home/moonstrider/.pypath/cache/guide2pharma.edges.pickle
+[2019-03-25 17:25:07] ### INFO ###### New nodes have been created
+[2019-03-25 17:25:07] ### INFO ###### New edges have been created
+[2019-03-25 17:25:07] ### INFO ###### Introducing new node and edge attributes...
+[2019-03-25 17:25:07] ### WARNING ###### Vertex attribute `exp` has only None values
+[2019-03-25 17:25:07] ### WARNING ###### Edge attribute `negative_refs` has only None values
+[2019-03-25 17:25:07] ### WARNING ###### Edge attribute `negative` has only None values
+[2019-03-25 17:25:07] ### INFO ###### Retrieving data by dataio.get_ca1() ...
+[2019-03-25 17:25:07] ### INFO ###### 1787 lines have been read from get_ca1,1477 links after mapping; 
+		0 lines filtered by filters;
+		0 lines filtered because lack of references;
+		0 lines filtered by taxon filters.
+[2019-03-25 17:25:07] ### INFO ###### Mapped edge list saved to /home/moonstrider/.pypath/cache/ca1.edges.pickle
+[2019-03-25 17:25:07] ### INFO ###### New nodes have been created
+[2019-03-25 17:25:07] ### INFO ###### New edges have been created
+[2019-03-25 17:25:07] ### INFO ###### Introducing new node and edge attributes...
+[2019-03-25 17:25:07] ### WARNING ###### Vertex attribute `exp` has only None values
+[2019-03-25 17:25:07] ### WARNING ###### Edge attribute `ca1_effect` has multiple types of values: set, str
+[2019-03-25 17:25:07] ### WARNING ###### Edge attribute `negative_refs` has only None values
+[2019-03-25 17:25:07] ### WARNING ###### Edge attribute `negative` has only None values
+[2019-03-25 17:25:07] ### WARNING ###### Edge attribute `ca1_type` has multiple types of values: set, str
+[2019-03-25 17:25:07] ### INFO ###### /home/moonstrider/anaconda3/envs/iDS/lib/python3.6/site-packages/pypath/data/arn_curated.csv opened...
+[2019-03-25 17:25:07] ### INFO ###### 94 lines have been read from /home/moonstrider/anaconda3/envs/iDS/lib/python3.6/site-packages/pypath/data/arn_curated.csv,95 links after mapping; 
+		0 lines filtered by filters;
+		0 lines filtered because lack of references;
+		0 lines filtered by taxon filters.
+[2019-03-25 17:25:07] ### INFO ###### Mapped edge list saved to /home/moonstrider/.pypath/cache/arn.edges.pickle
+[2019-03-25 17:25:07] ### INFO ###### New nodes have been created
+[2019-03-25 17:25:08] ### INFO ###### New edges have been created
+[2019-03-25 17:25:08] ### INFO ###### Introducing new node and edge attributes...
+[2019-03-25 17:25:08] ### WARNING ###### Vertex attribute `exp` has only None values
+[2019-03-25 17:25:08] ### WARNING ###### Edge attribute `netbiol_effect` has multiple types of values: str, set
+[2019-03-25 17:25:08] ### WARNING ###### Edge attribute `negative_refs` has only None values
+[2019-03-25 17:25:08] ### WARNING ###### Edge attribute `negative` has only None values
+[2019-03-25 17:25:08] ### INFO ###### /home/moonstrider/anaconda3/envs/iDS/lib/python3.6/site-packages/pypath/data/nrf2ome.csv opened...
+[2019-03-25 17:25:08] ### INFO ###### 108 lines have been read from /home/moonstrider/anaconda3/envs/iDS/lib/python3.6/site-packages/pypath/data/nrf2ome.csv,109 links after mapping; 
+		0 lines filtered by filters;
+		0 lines filtered because lack of references;
+		0 lines filtered by taxon filters.
+[2019-03-25 17:25:08] ### INFO ###### Mapped edge list saved to /home/moonstrider/.pypath/cache/nrf2ome.edges.pickle
+[2019-03-25 17:25:08] ### INFO ###### New nodes have been created
+[2019-03-25 17:25:08] ### INFO ###### New edges have been created
+[2019-03-25 17:25:08] ### INFO ###### Introducing new node and edge attributes...
+[2019-03-25 17:25:08] ### WARNING ###### Vertex attribute `exp` has only None values
+[2019-03-25 17:25:08] ### WARNING ###### Edge attribute `netbiol_effect` has multiple types of values: str, set
+[2019-03-25 17:25:08] ### WARNING ###### Edge attribute `negative_refs` has only None values
+[2019-03-25 17:25:08] ### WARNING ###### Edge attribute `negative` has only None values
+[2019-03-25 17:25:08] ### INFO ###### Retrieving data by dataio.macrophage_interactions() ...
+[2019-03-25 17:25:08] ### INFO ###### 4515 lines have been read from macrophage_interactions,4860 links after mapping; 
+		0 lines filtered by filters;
+		13 lines filtered because lack of references;
+		0 lines filtered by taxon filters.
+[2019-03-25 17:25:08] ### INFO ###### Mapped edge list saved to /home/moonstrider/.pypath/cache/macrophage.edges.pickle
+[2019-03-25 17:25:08] ### INFO ###### New nodes have been created
+[2019-03-25 17:25:08] ### INFO ###### New edges have been created
+[2019-03-25 17:25:08] ### INFO ###### Introducing new node and edge attributes...
+[2019-03-25 17:25:08] ### WARNING ###### Vertex attribute `exp` has only None values
+[2019-03-25 17:25:09] ### WARNING ###### Edge attribute `negative_refs` has only None values
+[2019-03-25 17:25:09] ### WARNING ###### Edge attribute `negative` has only None values
+[2019-03-25 17:25:09] ### INFO ###### Retrieving data by dataio.deathdomain_interactions() ...
+[2019-03-25 17:25:10] ### ERROR ###### deathdomain_interactions: No such file or dataio function! :(
+
+[2019-03-25 17:25:10] ### INFO ###### attach_network(): No data, nothing to do.
+[2019-03-25 17:25:10] ### INFO ###### Retrieving data by dataio.get_pdzbase() ...
+[2019-03-25 17:25:10] ### INFO ###### 338 lines have been read from get_pdzbase,125 links after mapping; 
+		0 lines filtered by filters;
+		0 lines filtered because lack of references;
+		214 lines filtered by taxon filters.
+[2019-03-25 17:25:10] ### INFO ###### Mapped edge list saved to /home/moonstrider/.pypath/cache/pdzbase.edges.pickle
+[2019-03-25 17:25:10] ### INFO ###### New nodes have been created
+[2019-03-25 17:25:10] ### INFO ###### New edges have been created
+[2019-03-25 17:25:10] ### INFO ###### Introducing new node and edge attributes...
+[2019-03-25 17:25:10] ### WARNING ###### Vertex attribute `exp` has only None values
+[2019-03-25 17:25:10] ### WARNING ###### Edge attribute `negative_refs` has only None values
+[2019-03-25 17:25:10] ### WARNING ###### Edge attribute `negative` has only None values
+[2019-03-25 17:25:10] ### INFO ###### Retrieving data by dataio.signor_interactions() ...
+[2019-03-25 17:25:12] ### INFO ###### 20140 lines have been read from signor_interactions,10124 links after mapping; 
+		4012 lines filtered by filters;
+		691 lines filtered because lack of references;
+		3110 lines filtered by taxon filters.
+[2019-03-25 17:25:12] ### INFO ###### Mapped edge list saved to /home/moonstrider/.pypath/cache/signor.edges.pickle
+[2019-03-25 17:25:12] ### INFO ###### New nodes have been created
+[2019-03-25 17:25:12] ### INFO ###### New edges have been created
+[2019-03-25 17:25:12] ### INFO ###### Introducing new node and edge attributes...
+[2019-03-25 17:25:14] ### WARNING ###### Vertex attribute `exp` has only None values
+[2019-03-25 17:25:14] ### WARNING ###### Edge attribute `negative_refs` has only None values
+[2019-03-25 17:25:14] ### WARNING ###### Edge attribute `negative` has only None values
+[2019-03-25 17:25:14] ### INFO ###### Retrieving data by dataio.hpmr_interactions() ...
+[2019-03-25 17:25:14] ### INFO ###### 621 lines have been read from hpmr_interactions,579 links after mapping; 
+		0 lines filtered by filters;
+		47 lines filtered because lack of references;
+		0 lines filtered by taxon filters.
+[2019-03-25 17:25:14] ### INFO ###### Mapped edge list saved to /home/moonstrider/.pypath/cache/hpmr.edges.pickle
+[2019-03-25 17:25:14] ### INFO ###### New nodes have been created
+[2019-03-25 17:25:14] ### INFO ###### New edges have been created
+[2019-03-25 17:25:14] ### INFO ###### Introducing new node and edge attributes...
+[2019-03-25 17:25:14] ### WARNING ###### Vertex attribute `exp` has only None values
+[2019-03-25 17:25:14] ### WARNING ###### Edge attribute `negative_refs` has only None values
+[2019-03-25 17:25:14] ### WARNING ###### Edge attribute `negative` has only None values
+[2019-03-25 17:25:14] ### INFO ###### Retrieving data by dataio.cellphonedb_interactions() ...
+[2019-03-25 17:25:14] ### INFO ###### 825 lines have been read from cellphonedb_interactions,148 links after mapping; 
+		0 lines filtered by filters;
+		678 lines filtered because lack of references;
+		0 lines filtered by taxon filters.
+[2019-03-25 17:25:14] ### INFO ###### Mapped edge list saved to /home/moonstrider/.pypath/cache/cellphonedb.edges.pickle
+[2019-03-25 17:25:14] ### INFO ###### New nodes have been created
+[2019-03-25 17:25:14] ### INFO ###### New edges have been created
+[2019-03-25 17:25:14] ### INFO ###### Introducing new node and edge attributes...
+[2019-03-25 17:25:14] ### WARNING ###### Vertex attribute `exp` has only None values
+[2019-03-25 17:25:14] ### WARNING ###### Edge attribute `negative_refs` has only None values
+[2019-03-25 17:25:14] ### WARNING ###### Edge attribute `negative` has only None values
+[2019-03-25 17:25:15] ### INFO ###### Retrieving data by dataio.ramilowski_interactions() ...
+[2019-03-25 17:25:15] ### INFO ###### 1898 lines have been read from ramilowski_interactions,341 links after mapping; 
+		0 lines filtered by filters;
+		1626 lines filtered because lack of references;
+		0 lines filtered by taxon filters.
+[2019-03-25 17:25:15] ### INFO ###### Mapped edge list saved to /home/moonstrider/.pypath/cache/ramilowski2015.edges.pickle
+[2019-03-25 17:25:15] ### INFO ###### New nodes have been created
+[2019-03-25 17:25:15] ### INFO ###### New edges have been created
+[2019-03-25 17:25:15] ### INFO ###### Introducing new node and edge attributes...
+[2019-03-25 17:25:15] ### WARNING ###### Vertex attribute `exp` has only None values
+[2019-03-25 17:25:15] ### WARNING ###### Edge attribute `negative_refs` has only None values
+[2019-03-25 17:25:15] ### WARNING ###### Edge attribute `negative` has only None values
+[2019-03-25 17:25:16] ### INFO ###### Retrieving data by dataio.get_phosphosite_curated() ...
+[2019-03-25 17:25:16] ### INFO ###### 5871 lines have been read from get_phosphosite_curated,5848 links after mapping; 
+		0 lines filtered by filters;
+		0 lines filtered because lack of references;
+		0 lines filtered by taxon filters.
+[2019-03-25 17:25:16] ### INFO ###### Mapped edge list saved to /home/moonstrider/.pypath/cache/phosphosite.edges.pickle
+[2019-03-25 17:25:16] ### INFO ###### New nodes have been created
+[2019-03-25 17:25:16] ### INFO ###### New edges have been created
+[2019-03-25 17:25:16] ### INFO ###### Introducing new node and edge attributes...
+[2019-03-25 17:25:18] ### WARNING ###### Vertex attribute `exp` has only None values
+[2019-03-25 17:25:18] ### WARNING ###### Edge attribute `negative_refs` has only None values
+[2019-03-25 17:25:18] ### WARNING ###### Edge attribute `negative` has only None values
+[2019-03-25 17:25:18] ### INFO ###### Retrieving data by dataio.depod_interactions() ...
+[2019-03-25 17:25:18] ### INFO ###### 831 lines have been read from depod_interactions,831 links after mapping; 
+		0 lines filtered by filters;
+		1 lines filtered because lack of references;
+		0 lines filtered by taxon filters.
+[2019-03-25 17:25:18] ### INFO ###### Mapped edge list saved to /home/moonstrider/.pypath/cache/depod.edges.pickle
+[2019-03-25 17:25:18] ### INFO ###### New nodes have been created
+[2019-03-25 17:25:18] ### INFO ###### New edges have been created
+[2019-03-25 17:25:18] ### INFO ###### Introducing new node and edge attributes...
+[2019-03-25 17:25:18] ### WARNING ###### Vertex attribute `exp` has only None values
+[2019-03-25 17:25:19] ### WARNING ###### Edge attribute `negative_refs` has only None values
+[2019-03-25 17:25:19] ### WARNING ###### Edge attribute `negative` has only None values
+[2019-03-25 17:25:19] ### INFO ###### Retrieving data by dataio.lmpid_interactions() ...
+[2019-03-25 17:25:26] ### INFO ###### 1169 lines have been read from lmpid_interactions,1170 links after mapping; 
+		0 lines filtered by filters;
+		0 lines filtered because lack of references;
+		0 lines filtered by taxon filters.
+[2019-03-25 17:25:26] ### INFO ###### Mapped edge list saved to /home/moonstrider/.pypath/cache/lmpid.edges.pickle
+[2019-03-25 17:25:26] ### INFO ###### New nodes have been created
+[2019-03-25 17:25:26] ### INFO ###### New edges have been created
+[2019-03-25 17:25:26] ### INFO ###### Introducing new node and edge attributes...
+[2019-03-25 17:25:27] ### WARNING ###### Vertex attribute `exp` has only None values
+[2019-03-25 17:25:27] ### WARNING ###### Edge attribute `negative_refs` has only None values
+[2019-03-25 17:25:27] ### WARNING ###### Edge attribute `negative` has only None values
+[2019-03-25 17:25:27] ### INFO ###### Retrieving data by dataio.phelm_interactions() ...
+[2019-03-25 17:25:27] ### INFO ###### 2425 lines have been read from phelm_interactions,2401 links after mapping; 
+		0 lines filtered by filters;
+		4 lines filtered because lack of references;
+		0 lines filtered by taxon filters.
+[2019-03-25 17:25:27] ### INFO ###### Mapped edge list saved to /home/moonstrider/.pypath/cache/phosphoelm.edges.pickle
+[2019-03-25 17:25:27] ### INFO ###### New nodes have been created
+[2019-03-25 17:25:27] ### INFO ###### New edges have been created
+[2019-03-25 17:25:27] ### INFO ###### Introducing new node and edge attributes...
+[2019-03-25 17:25:28] ### WARNING ###### Vertex attribute `exp` has only None values
+[2019-03-25 17:25:28] ### WARNING ###### Edge attribute `negative_refs` has only None values
+[2019-03-25 17:25:28] ### WARNING ###### Edge attribute `negative` has only None values
+[2019-03-25 17:25:28] ### INFO ###### Retrieving data by dataio.get_elm_interactions() ...
+[2019-03-25 17:25:28] ### INFO ###### 1442 lines have been read from get_elm_interactions,783 links after mapping; 
+		0 lines filtered by filters;
+		10 lines filtered because lack of references;
+		649 lines filtered by taxon filters.
+[2019-03-25 17:25:28] ### INFO ###### Mapped edge list saved to /home/moonstrider/.pypath/cache/elm.edges.pickle
+[2019-03-25 17:25:28] ### INFO ###### New nodes have been created
+[2019-03-25 17:25:28] ### INFO ###### New edges have been created
+[2019-03-25 17:25:28] ### INFO ###### Introducing new node and edge attributes...
+[2019-03-25 17:25:28] ### WARNING ###### Vertex attribute `exp` has only None values
+[2019-03-25 17:25:29] ### WARNING ###### Edge attribute `negative_refs` has only None values
+[2019-03-25 17:25:29] ### WARNING ###### Edge attribute `negative` has only None values
+[2019-03-25 17:25:29] ### INFO ###### Retrieving data by dataio.get_domino_interactions() ...
+[2019-03-25 17:25:29] ### INFO ###### -1 lines have been read from get_domino_interactions,0 links after mapping; 
+		0 lines filtered by filters;
+		0 lines filtered because lack of references;
+		0 lines filtered by taxon filters.
+[2019-03-25 17:25:29] ### INFO ###### Mapped edge list saved to /home/moonstrider/.pypath/cache/domino.edges.pickle
+[2019-03-25 17:25:29] ### INFO ###### New nodes have been created
+[2019-03-25 17:25:29] ### INFO ###### New edges have been created
+[2019-03-25 17:25:29] ### INFO ###### Introducing new node and edge attributes...
+[2019-03-25 17:25:29] ### WARNING ###### Vertex attribute `exp` has only None values
+[2019-03-25 17:25:29] ### WARNING ###### Edge attribute `negative_refs` has only None values
+[2019-03-25 17:25:29] ### WARNING ###### Edge attribute `negative` has only None values
+[2019-03-25 17:25:29] ### INFO ###### Retrieving data by dataio.dbptm_interactions() ...
+[2019-03-25 17:25:30] ### INFO ###### 2070 lines have been read from dbptm_interactions,1673 links after mapping; 
+		0 lines filtered by filters;
+		108 lines filtered because lack of references;
+		0 lines filtered by taxon filters.
+[2019-03-25 17:25:30] ### INFO ###### Mapped edge list saved to /home/moonstrider/.pypath/cache/dbptm.edges.pickle
+[2019-03-25 17:25:30] ### INFO ###### New nodes have been created
+[2019-03-25 17:25:31] ### INFO ###### New edges have been created
+[2019-03-25 17:25:31] ### INFO ###### Introducing new node and edge attributes...
+[2019-03-25 17:25:31] ### WARNING ###### Vertex attribute `exp` has only None values
+[2019-03-25 17:25:31] ### WARNING ###### Edge attribute `negative_refs` has only None values
+[2019-03-25 17:25:31] ### WARNING ###### Edge attribute `negative` has only None values
+[2019-03-25 17:25:31] ### INFO ###### Retrieving data by dataio.hprd_interactions() ...
+[2019-03-25 17:25:32] ### INFO ### Loading mapping tables...
+[2019-03-25 17:25:32] ### INFO ###### Loading table ('refseqp', 'uniprot') ...
+[2019-03-25 17:25:32] ### INFO ###### Table ('refseqp', 'uniprot') loaded from UniprotMapping.
+[2019-03-25 17:25:32] ### INFO ###### 4670 lines have been read from hprd_interactions,4445 links after mapping; 
+		0 lines filtered by filters;
+		0 lines filtered because lack of references;
+		0 lines filtered by taxon filters.
+[2019-03-25 17:25:32] ### INFO ###### Mapped edge list saved to /home/moonstrider/.pypath/cache/hprd-phos.edges.pickle
+[2019-03-25 17:25:32] ### INFO ###### New nodes have been created
+[2019-03-25 17:25:32] ### INFO ###### New edges have been created
+[2019-03-25 17:25:32] ### INFO ###### Introducing new node and edge attributes...
+[2019-03-25 17:25:33] ### WARNING ###### Vertex attribute `exp` has only None values
+[2019-03-25 17:25:33] ### WARNING ###### Edge attribute `hprd_mechanism` has multiple types of values: set, str
+[2019-03-25 17:25:33] ### WARNING ###### Edge attribute `negative_refs` has only None values
+[2019-03-25 17:25:33] ### WARNING ###### Edge attribute `negative` has only None values
+[2019-03-25 17:25:33] ### INFO ###### Retrieving data by dataio.biogrid_interactions() ...
+[2019-03-25 17:25:41] ### INFO ###### 216416 lines have been read from biogrid_interactions,162093 links after mapping; 
+		0 lines filtered by filters;
+		0 lines filtered because lack of references;
+		0 lines filtered by taxon filters.
+[2019-03-25 17:25:41] ### INFO ###### Mapped edge list saved to /home/moonstrider/.pypath/cache/biogrid.edges.pickle
+[2019-03-25 17:25:41] ### INFO ###### New nodes have been created
+[2019-03-25 17:25:42] ### INFO ###### New edges have been created
+[2019-03-25 17:25:42] ### INFO ###### Introducing new node and edge attributes...
+[2019-03-25 17:26:07] ### WARNING ###### Vertex attribute `exp` has only None values
+[2019-03-25 17:26:07] ### WARNING ###### Edge attribute `negative_refs` has only None values
+[2019-03-25 17:26:07] ### WARNING ###### Edge attribute `negative` has only None values
+[2019-03-25 17:26:08] ### INFO ###### Retrieving data by dataio.get_ccmap() ...
+[2019-03-25 17:26:10] ### INFO ###### 47643 lines have been read from get_ccmap,43457 links after mapping; 
+		0 lines filtered by filters;
+		226 lines filtered because lack of references;
+		0 lines filtered by taxon filters.
+[2019-03-25 17:26:10] ### INFO ###### Mapped edge list saved to /home/moonstrider/.pypath/cache/cancercellmap.edges.pickle
+[2019-03-25 17:26:10] ### INFO ###### New nodes have been created
+[2019-03-25 17:26:10] ### INFO ###### New edges have been created
+[2019-03-25 17:26:10] ### INFO ###### Introducing new node and edge attributes...
+[2019-03-25 17:26:15] ### WARNING ###### Vertex attribute `exp` has only None values
+[2019-03-25 17:26:15] ### WARNING ###### Edge attribute `negative_refs` has only None values
+[2019-03-25 17:26:16] ### WARNING ###### Edge attribute `negative` has only None values
+[2019-03-25 17:26:16] ### INFO ###### Retrieving data by dataio.mppi_interactions() ...
+[2019-03-25 17:26:16] ### INFO ###### 776 lines have been read from mppi_interactions,751 links after mapping; 
+		0 lines filtered by filters;
+		8 lines filtered because lack of references;
+		0 lines filtered by taxon filters.
+[2019-03-25 17:26:16] ### INFO ###### Mapped edge list saved to /home/moonstrider/.pypath/cache/mppi.edges.pickle
+[2019-03-25 17:26:16] ### INFO ###### New nodes have been created
+[2019-03-25 17:26:16] ### INFO ###### New edges have been created
+[2019-03-25 17:26:16] ### INFO ###### Introducing new node and edge attributes...
+[2019-03-25 17:26:17] ### WARNING ###### Vertex attribute `exp` has only None values
+[2019-03-25 17:26:17] ### WARNING ###### Edge attribute `negative_refs` has only None values
+[2019-03-25 17:26:17] ### WARNING ###### Edge attribute `negative` has only None values
+[2019-03-25 17:26:18] ### INFO ###### Retrieving data by dataio.get_dip() ...
+[2019-03-25 17:26:18] ### INFO ###### -1 lines have been read from get_dip,0 links after mapping; 
+		0 lines filtered by filters;
+		0 lines filtered because lack of references;
+		0 lines filtered by taxon filters.
+[2019-03-25 17:26:18] ### INFO ###### Mapped edge list saved to /home/moonstrider/.pypath/cache/dip.edges.pickle
+[2019-03-25 17:26:18] ### INFO ###### New nodes have been created
+[2019-03-25 17:26:18] ### INFO ###### New edges have been created
+[2019-03-25 17:26:18] ### INFO ###### Introducing new node and edge attributes...
+[2019-03-25 17:26:18] ### WARNING ###### Vertex attribute `exp` has only None values
+[2019-03-25 17:26:19] ### WARNING ###### Edge attribute `negative_refs` has only None values
+[2019-03-25 17:26:19] ### WARNING ###### Edge attribute `negative` has only None values
+[2019-03-25 17:26:20] ### INFO ###### Retrieving data by dataio.get_innatedb() ...
+[2019-03-25 17:26:20] ### INFO ###### 19035 lines have been read from get_innatedb,18829 links after mapping; 
+		0 lines filtered by filters;
+		0 lines filtered because lack of references;
+		0 lines filtered by taxon filters.
+[2019-03-25 17:26:20] ### INFO ###### Mapped edge list saved to /home/moonstrider/.pypath/cache/innatedb.edges.pickle
+[2019-03-25 17:26:20] ### INFO ###### New nodes have been created
+[2019-03-25 17:26:20] ### INFO ###### New edges have been created
+[2019-03-25 17:26:20] ### INFO ###### Introducing new node and edge attributes...
+[2019-03-25 17:26:27] ### WARNING ###### Vertex attribute `exp` has only None values
+[2019-03-25 17:26:27] ### WARNING ###### Edge attribute `negative_refs` has only None values
+[2019-03-25 17:26:27] ### WARNING ###### Edge attribute `negative` has only None values
+[2019-03-25 17:26:28] ### INFO ###### Retrieving data by dataio.get_matrixdb() ...
+[2019-03-25 17:26:28] ### INFO ###### 424 lines have been read from get_matrixdb,425 links after mapping; 
+		0 lines filtered by filters;
+		0 lines filtered because lack of references;
+		0 lines filtered by taxon filters.
+[2019-03-25 17:26:28] ### INFO ###### Mapped edge list saved to /home/moonstrider/.pypath/cache/matrixdb.edges.pickle
+[2019-03-25 17:26:28] ### INFO ###### New nodes have been created
+[2019-03-25 17:26:28] ### INFO ###### New edges have been created
+[2019-03-25 17:26:28] ### INFO ###### Introducing new node and edge attributes...
+[2019-03-25 17:26:28] ### WARNING ###### Vertex attribute `exp` has only None values
+[2019-03-25 17:26:29] ### WARNING ###### Edge attribute `negative_refs` has only None values
+[2019-03-25 17:26:29] ### WARNING ###### Edge attribute `negative` has only None values
+[2019-03-25 17:26:30] ### INFO ###### Retrieving data by dataio.intact_interactions() ...
+[2019-03-25 17:27:02] ### INFO ###### 123992 lines have been read from intact_interactions,74945 links after mapping; 
+		0 lines filtered by filters;
+		49138 lines filtered because lack of references;
+		0 lines filtered by taxon filters.
+[2019-03-25 17:27:02] ### INFO ###### Mapped edge list saved to /home/moonstrider/.pypath/cache/intact.edges.pickle
+[2019-03-25 17:27:03] ### INFO ###### New nodes have been created
+[2019-03-25 17:27:03] ### INFO ###### New edges have been created
+[2019-03-25 17:27:03] ### INFO ###### Introducing new node and edge attributes...
+[2019-03-25 17:27:40] ### WARNING ###### Vertex attribute `exp` has only None values
+[2019-03-25 17:27:42] ### WARNING ###### Edge attribute `negative_refs` has only None values
+[2019-03-25 17:27:42] ### WARNING ###### Edge attribute `negative` has only None values
+[2019-03-25 17:27:44] ### INFO ###### Retrieving data by dataio.hprd_htp() ...
+[2019-03-25 17:27:46] ### INFO ###### 39240 lines have been read from hprd_htp,42023 links after mapping; 
+		0 lines filtered by filters;
+		0 lines filtered because lack of references;
+		0 lines filtered by taxon filters.
+[2019-03-25 17:27:46] ### INFO ###### Mapped edge list saved to /home/moonstrider/.pypath/cache/hprd.edges.pickle
+[2019-03-25 17:27:46] ### INFO ###### New nodes have been created
+[2019-03-25 17:27:46] ### INFO ###### New edges have been created
+[2019-03-25 17:27:46] ### INFO ###### Introducing new node and edge attributes...
+[2019-03-25 17:28:07] ### WARNING ###### Vertex attribute `exp` has only None values
+[2019-03-25 17:28:08] ### WARNING ###### Edge attribute `negative_refs` has only None values
+[2019-03-25 17:28:08] ### WARNING ###### Edge attribute `negative` has only None values
+[2019-03-25 17:28:10] ### INFO ### Removing duplicate edges...

@@ -1,0 +1,4 @@
+[2019-03-25 15:14:49] ### INFO ### Logger initialized, logging to log/dvjky.log
+[2019-03-25 15:14:49] ### INFO ### PyPath has been initialized
+[2019-03-25 15:14:49] ### INFO ### Beginning session 'dvjky'
+[2019-03-25 15:17:34] ### INFO ###### Retrieving data by dataio.trip_interactions() ...
