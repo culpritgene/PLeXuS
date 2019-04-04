@@ -19,12 +19,33 @@ class labirinth_game():
 
         self.PROT_INFO = {}
         self.MASKED_LABELS = []
+        self.merged_net = None
+
+        ### choose active network
+        if self.mode == 'filt':
+            self.net = self.parent.init_network_filt
+        elif self.mode == 'prime':
+            self.net = self.merged_net
+
+    def construct_merged_net(self):
+        inds_true = [self.get_index_in_primenetwork(x) for x in self.true_path]
+        inds_filt = [self.get_index_in_primenetwork(x) for x in self.parent.init_network_filt.vs()['label']]
+        inds = inds_filt+inds_true
+        self.merged_net = self.parent.init_pa.graph.induced_subgraph(inds)
+        if self.mode == 'filt':
+            self.net = self.parent.init_network_filt
+        elif self.mode == 'prime':
+            self.net = self.merged_net
+
 
     def get_index_in_subnetwork(self, gs):
         return self.parent.current_game_network_filt.vs()['label'].index(gs)
 
     def get_index_in_initnetwork(self, gs):
-        return self.parent.init_network_filt.vs()['label'].index(gs)
+        return self.net.vs()['label'].index(gs)
+
+    def get_index_in_primenetwork(self, gs):
+        return self.parent.init_pa.graph.vs()['label'].index(gs)
 
     def start_game_12(self):
         ret2 = self.start_game_01()
@@ -33,6 +54,7 @@ class labirinth_game():
 
     def start_game_01(self):
         ret1 = self.generate_True_Path()
+        self.construct_merged_net()
         print(ret1)
         if ret1 != 0:
             self.generate_wrong_vars()
@@ -87,16 +109,31 @@ class labirinth_game():
                         return 2
         return 0
 
+
     def generate_wrong_vars(self, ):
         assert self.true_path, print('Firstly we should generate a track of true gene-symbols, than add false names')
+
         self.path_variants_ids.append((self.get_index_in_initnetwork(self.true_path[0])))
-        for gs in self.true_path[1:]:
-            ind = self.get_index_in_initnetwork(gs)
-            self.all_paths = self.parent.init_network_filt.get_shortest_paths(
-                ind)  ## spectrum of paths from true node to any other node
+        inds_of_true = [self.get_index_in_initnetwork(gs) for gs in self.true_path[1:]]
+        for ind in inds_of_true:
+            ## spectrum of paths from true node to any other node
+            self.all_paths = self.net.get_shortest_paths(ind)
+
+            if self.parent.REMOVE_SELF_CONN.get():
+                self_conn_mask = []
+                for pt in self.all_paths:
+                    self_num = len([v for v in pt if v in inds_of_true])
+                    if self_num != 0:
+                        self_conn_mask.append(0)
+                    else:
+                        self_conn_mask.append(1)
+                self.all_paths = [pt for i,pt in enumerate(self.all_paths) if self_conn_mask[i]==1]
+                print(len(self_conn_mask), ' / ', sum(self_conn_mask))
+
+
             all_distances = np.array([len(x) for x in self.all_paths])
             possible_randoms = np.where(all_distances == 0)[0]
-
+            
             ## first we try to include only disconnected nodes (for now)
             if len(possible_randoms) > self.parent.LABIRINTH_CONFIG.BRANCHING_NUM.get() - 1:
                 print(ind, 'all unconnected partners')
@@ -108,30 +145,34 @@ class labirinth_game():
                 np.random.choice(possible_randoms, self.parent.LABIRINTH_CONFIG.BRANCHING_NUM.get() - 1, replace=False))
             self.path_variants_ids.append(tuple(sele + [ind]))
 
-    def make_variants_gs(self, ):
+
+    def make_variants_gs(self, c='prime'):
         variants = []
         for sublist in self.path_variants_ids:
             if not isinstance(sublist, int):
-                new_sublist = [self.parent.init_network_filt.vs()[node_id]['label'] for node_id in sublist]
+                new_sublist = [self.net.vs()[node_id]['label'] for node_id in sublist]
             else:
-                new_sublist = tuple([self.parent.init_network_filt.vs()[sublist]['label']])
+                new_sublist = tuple([self.net.vs()[sublist]['label']])
             variants.append(tuple(new_sublist))
         self.path_variants = variants
 
-    def unpack_variant_ids(self):
+    def unpack_variant_ids(self, c='prime'):
         unpacked = [node for sublist in self.path_variants[1:] for node in sublist]
         unpacked.insert(0, self.path_variants[0][0])
-        unpacked_ids = [self.parent.init_network_filt.vs()['label'].index(x) for x in unpacked]
+        if c == 'prime':
+            unpacked_ids = [self.parent.init_pa.graph.vs()['label'].index(x) for x in unpacked]
+        elif c == 'filt':
+            unpacked_ids = [self.parent.init_network_filt.vs()['label'].index(x) for x in unpacked]
         return unpacked_ids
 
     def make_game_subgraph(self, ):
-        unpacked_ids = self.unpack_variant_ids()
-        self.game_subgraph = self.parent.init_network_filt.induced_subgraph(unpacked_ids, implementation='create_from_scratch')
+        unpacked_ids = self.unpack_variant_ids(c='filt')
+        self.game_subgraph = self.net.induced_subgraph(unpacked_ids, implementation='create_from_scratch')
 
     def make_game_newgraph(self, ):
-        unpacked_ids = self.unpack_variant_ids()
+        unpacked_ids = self.unpack_variant_ids(c='prime')
         self.game_subgraph = igraph.Graph()
-        for vs in self.parent.init_network_filt.vs()[unpacked_ids]:
+        for vs in self.parent.init_pa.graph.vs()[unpacked_ids]:
             self.game_subgraph.add_vertex(**vs.attributes())
 
     def add_layers_info(self, ):
@@ -144,9 +185,9 @@ class labirinth_game():
         if self.parent.MASK_VOL.get()=='subgraph':
            self.MASKED_LABELS = self.game_subgraph.vs()['label']
         elif self.parent.MASK_VOL.get() == 'neighbors':
-            ids = [v.index for v in self.parent.init_network_filt.vs() if v['name'] in self.game_subgraph.vs()['name']]
-            ids2 = list(np.unique(np.concatenate(self.parent.init_network_filt.neighborhood(ids, 1))))
-            self.MASKED_LABELS = [v['label'] for v in self.parent.init_network_filt.vs() if v.index in ids2]
+            ids = [v.index for v in self.net.vs() if v['name'] in self.game_subgraph.vs()['name']]
+            ids2 = list(np.unique(np.concatenate(self.net.neighborhood(ids, 1))))
+            self.MASKED_LABELS = [v['label'] for v in self.net.vs() if v.index in ids2]
         elif self.parent.MASK_VOL.get() == 'all':
             ids = [v.index for v in self.parent.init_pa.graph.vs() if v['name'] in self.game_subgraph.vs()['name']]
             ids2 = list(np.unique(np.concatenate(self.parent.init_pa.graph.neighborhood(ids, 2))))

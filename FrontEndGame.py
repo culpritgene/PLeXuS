@@ -42,8 +42,13 @@ class Gui():
 
         self.SELECTED_GENE_SET = tk.StringVar()
 
-        self.PATHWAY_LIST = (self.prot_names[self.CUR_DB.get()].keys())
-        # self.PROT_INFO = {}
+        self.PATHWAY_LIST = list(self.prot_names[self.CUR_DB.get()])
+
+
+
+        self.CUR_NODES = ['random']
+        self.CUR_F_NODE = tk.StringVar()
+        self.CUR_F_NODE.set('random')
 
         self.CUR_PATHWAY = tk.StringVar()
         self.CUR_PATHWAY.set("None")
@@ -64,6 +69,8 @@ class Gui():
         self.FILTER_TYPE = tk.StringVar()
         self.FILTER_TYPE.set('Ref_number')
 
+        self.REMOVE_SELF_CONN = tk.BooleanVar()
+        self.REMOVE_SELF_CONN.set(False)
         self.SELECTION_TYPE = tk.StringVar()
         self.SELECTION_TYPE.set('random walk')
         self.MASK_VOL = tk.StringVar()
@@ -81,6 +88,8 @@ class Gui():
         self.LABIRINTH_CONFIG.BRANCHING_NUM.set(3)
         self.LABIRINTH_CONFIG.CONNECTGRAPH = BooleanVar()
         self.LABIRINTH_CONFIG.CONNECTGRAPH.set(False)
+        self.LABIRINTH_CONFIG.GAME_MODE = 'prime'
+
         #    self.LABIRINTH_CONFIG.FILTER_DEGREE = 0
 
         self.STATS = CONFIG()
@@ -154,25 +163,25 @@ class Gui():
         self.Exit_B = Button(frame1, command=self.exit_command, text="Exit").grid(row=11, column=1, sticky="we")
 
         ################################################ OPTIONS
-        label1opt = Label(frame1opt, text="Game Options").grid(row=0, column=1, sticky="nw", pady=10)
+        label1opt = Label(frame1opt, text="Game Options").grid(row=0, column=1, sticky="nw", pady=8)
 
         GameOptFrame = Frame(frame1opt)
-        GameOptFrame.grid(row=1, column=1, sticky="nw", pady=8)
+        GameOptFrame.grid(row=1, column=1, sticky="nw", pady=5)
         SelectionOptFrame = Frame(frame1opt)
-        SelectionOptFrame.grid(row=2, column=1, sticky="nw", pady=8)
+        SelectionOptFrame.grid(row=2, column=1, sticky="nw", pady=5)
         HintsOptFrame = Frame(frame1opt)
-        HintsOptFrame.grid(row=3, column=1, sticky="nw", pady=8)
+        HintsOptFrame.grid(row=3, column=1, sticky="nw", pady=5)
         DisplayOptFrame = Frame(frame1opt)
-        DisplayOptFrame.grid(row=4, column=1, sticky="nw", pady=8)
+        DisplayOptFrame.grid(row=4, column=1, sticky="nw", pady=5)
 
-        label2opt = Label(GameOptFrame, text="Lives")
-        label2opt.grid(row=1, column=0, sticky="w")
-        label2opt.config(font=("Arial", 10))
+        label21opt = Label(GameOptFrame, text="Lives")
+        label21opt.grid(row=1, column=0, sticky="w")
+        label21opt.config(font=("Arial", 10))
         lives = Entry(GameOptFrame, width=6, text=self.TOTAL_LIVES, textvariable=self.TOTAL_LIVES)
         lives.grid(row=1, column=1, sticky="n", padx=10)
         lives.bind('<Return>', self.set_lives_command)
 
-        label3opt = Label(GameOptFrame, text="Brunch")
+        label3opt = Label(GameOptFrame, text="Branch")
         label3opt.grid(row=2, column=0, sticky="w")
         label3opt.config(font=("Arial", 10))
         branching = Entry(GameOptFrame, width=6, text=self.LABIRINTH_CONFIG.BRANCHING_NUM,
@@ -226,6 +235,12 @@ class Gui():
         self.ConnectGraph = Checkbutton(DisplayOptFrame, variable=self.LABIRINTH_CONFIG.CONNECTGRAPH, onvalue=True, offvalue=False)
         self.ConnectGraph.grid(row=3, column=1, sticky="w", padx=4)
 
+        label22opt = Label(DisplayOptFrame, text="Remove self-edges")
+        label22opt.grid(row=4, column=0, sticky="w")
+        label22opt.config(font=("Arial", 10))
+        lives = Checkbutton(DisplayOptFrame, variable=self.REMOVE_SELF_CONN, onvalue=True, offvalue=False)
+        lives.grid(row=4, column=1, sticky="w", padx=4)
+
         self.OPTIONS_EXIT = Button(frame1opt, command=self.options_exit, text='Return').grid(row=5, column=1,sticky="w", padx=4)
         ##############################################################
 
@@ -273,12 +288,17 @@ class Gui():
         self.Load_Gene_Set = Entry(frame0, width=10, text='', textvariable=self.SELECTED_GENE_SET)
         self.Load_Gene_Set.grid(row=0, column=1, sticky='WN', pady=4, padx=6)
         self.Load_Gene_Set.bind('<Return>', self.load_gene_set_function)
+
         self.Select_DB = tk.OptionMenu(frame0, self.CUR_DB, *self.DB_LIST, command=self.change_db_command, )
         self.Select_DB.grid(row=0, column=2, sticky="WN")
-        self.Select_Pathway_M = tk.OptionMenu(frame0, self.CUR_PATHWAY, *self.PATHWAY_LIST,
-                                              command=self.Load_network_from_pathway)
+
+        self.Select_Pathway_M = tk.OptionMenu(frame0, self.CUR_PATHWAY, *self.PATHWAY_LIST, command=self.Load_network_from_pathway)
         self.Select_Pathway_M.grid(row=0, column=3, sticky="N")
-        self.START_B = Button(frame0, command=self.Start_command, text='Start!').grid(row=0, column=4, sticky="EN")
+
+        self.Select_First_Node = tk.OptionMenu(frame0, self.CUR_F_NODE, *self.CUR_NODES, command=self.select_first_node)
+        self.Select_First_Node.grid(row=0, column=4, sticky="N")
+
+        self.START_B = Button(frame0, command=self.Start_command, text='Start!').grid(row=0, column=5, sticky="EN")
 
         self.FILT_ININET_SIZE = Label(frame0, text=self.FILTER_TYPE, textvariable=self.FILTER_TYPE, background='white').grid(row=1, column=1,sticky="SW",pady=3.4, padx=10)
 
@@ -289,9 +309,9 @@ class Gui():
 
         self.FILT_NET_SIZE = Label(frame0, textvariable=self.CURR_SUBNET_SIZE,
                                    text=self.CURR_SUBNET_SIZE, background='white').grid(row=1, column=4, sticky="SE",
-                                                                                        pady=3.4)
+                                                                                        pady=3.4, padx=5)
         self.FILT_ININET_SIZE = Label(frame0, textvariable=self.CURR_ININET_SIZE, text=self.CURR_ININET_SIZE,
-                                      background='white').grid(row=1, column=5, sticky="SE", pady=3.4, padx=10)
+                                      background='white').grid(row=1, column=5, sticky="SE", pady=3.4, padx=5)
 
         self.TEXT_BOX = Label(frame2, textvariable=self.TEXT_HIGHLIGHT, text=self.TEXT_HIGHLIGHT,
                               background='white').grid(row=10, column=0, sticky="WS", pady=60, padx=15)
@@ -317,7 +337,7 @@ class Gui():
             self.INFO_update('Only registered user can receit!')
         else:
             self.INFO_update(msg, 1200)
-            df = self.STATS.stats_protein
+            df = self.STATS.stats_proteins
             df2 = df[df['Score']!=0]
             genes = np.random.choice(df2.index, size=20, replace=False)
             pc_proteins = [v.index for v in self.init_pa.graph.vs() if v['label'] in genes]
@@ -325,16 +345,9 @@ class Gui():
             self.current_game_network = pc_subgraph
             self.current_game_network_filt = pc_subgraph
             self.CURR_SUBNET_SIZE.set(str(len(pc_proteins)))
+            self.set_curr_nodes_list()
+            self.Start_command()
 
-
-    def load_gene_set_function(self, x):
-        self.SELECTED_GENE_SET.set(x.__dict__['widget'].get())
-        self.root.after(1200)
-        genes = self.SELECTED_GENE_SET.get().split()
-        self.SELECTED_GENE_SET.set('')
-        self.Load_network_from_GS(genes)
-        msg = 'Loaded Users Gene Set!'
-        self.INFO_update(msg, 2000)
 
     def get_stats(self):
         try:
@@ -410,6 +423,56 @@ class Gui():
                                 self.CURR_INFO.set(msg)
                                 self.register_stats(res=2)
 
+
+    def show_WHOLE_graph_command(self):
+
+        layout = self.current_game_network_filt.layout_fruchterman_reingold(
+            repulserad=self.current_game_network_filt.vcount() ** 2.2,
+            maxiter=1000, area=self.current_game_network_filt.vcount() ** 2, coolexp=2, )
+
+        bbox = igraph.BoundingBox(0, 0, self.CANVAS_WIDTH / 2, self.CANVAS_HEIGHT / 2)
+        layout.fit_into(bbox)
+        layout.center(0, 0)
+        edges = []
+        for e in self.current_game_network_filt.es():
+            edges.append(e.tuple)
+        edges = np.array(edges)
+        coords = np.array(layout.coords)
+
+        self.crs = list(coords[edges].flatten())
+        self.graph1 = self.canvas.create_line(*self.crs, fill="blue", width=2)
+
+    def draw_graph_command(self, type_='new'):
+        edges = self.current_labirinth_game.edges
+        coords = self.current_labirinth_game.coords
+        self.zz = list(zip(coords[edges], self.current_labirinth_game.game_subgraph.vs()['label'][1:]))
+        if self.CURR_STEP.get() == 0:
+            self.turtle.penup()
+            self.turtle.setposition(self.zz[0][0][0])
+            self.turtle.pendown()
+            self.turtle.pencolor('blue')
+            self.turtle.write(self.current_labirinth_game.start_node, font=('Verdana', 16, 'bold'), align='center')
+            self.turtle.pencolor('black')
+            self.known_locations.update({self.current_labirinth_game.start_node: [self.zz[0][0][[1, 0]], 1]})
+        zz_slice = self.zz[self.LABIRINTH_CONFIG.BRANCHING_NUM.get() * self.CURR_STEP.get():self.LABIRINTH_CONFIG.BRANCHING_NUM.get() * (self.CURR_STEP.get() + 1)]
+        for c, lab in shuffle(zz_slice):
+            self.turtle_run(c, lab)
+
+    def turtle_run(self, c, lab, line='black', text='blue', speed=3):
+        self.turtle.pencolor(line)
+        self.turtle.speed(speed)
+        self.turtle.penup()
+        self.turtle.setposition(c[0])
+        self.turtle.pendown()
+        self.turtle.setposition(c[1])
+        if lab in self.known_locations.keys():
+            self.known_locations[lab][-1] += 1
+        else:
+            self.known_locations.update({lab: [c, 0]})
+            self.turtle.circle(3)
+            self.turtle.pencolor(text)
+            self.turtle.write(lab, font=('Verdana', 16, 'bold'), align='center')
+            self.turtle.pencolor(line)
 
     def split_by_ns(self, text, add=None, winsize=30):
         toktext = list(text[2:-2])
@@ -519,15 +582,6 @@ class Gui():
         self.filter_ref_slider_sele.configure(from_=min_, to= max_, resolution=resol)
 
 
-    def change_db_command(self, x):
-        self.CUR_DB.set(x)
-        self.CUR_PATHWAY.set('')
-        self.PATHWAY_LIST = self.prot_names[x]
-        self.Select_Pathway_M['menu'].delete(0, 'end')
-        for choice in self.PATHWAY_LIST:
-            self.Select_Pathway_M['menu'].add_command(label=choice, command=tk._setit(self.CUR_PATHWAY, choice,
-                                                                                      self.Load_network_from_pathway))
-
     def change_sele_type_command(self, x):
         self.SELECTION_TYPE.set(x)
 
@@ -551,55 +605,6 @@ class Gui():
                 disc.at[x[1], 'Score'] += c
         self.update_STATS_vars()
 
-    def show_WHOLE_graph_command(self):
-
-        layout = self.current_game_network_filt.layout_fruchterman_reingold(
-            repulserad=self.current_game_network_filt.vcount() ** 2.2,
-            maxiter=1000, area=self.current_game_network_filt.vcount() ** 2, coolexp=2, )
-
-        bbox = igraph.BoundingBox(0, 0, self.CANVAS_WIDTH / 2, self.CANVAS_HEIGHT / 2)
-        layout.fit_into(bbox)
-        layout.center(0, 0)
-        edges = []
-        for e in self.current_game_network_filt.es():
-            edges.append(e.tuple)
-        edges = np.array(edges)
-        coords = np.array(layout.coords)
-
-        self.crs = list(coords[edges].flatten())
-        self.graph1 = self.canvas.create_line(*self.crs, fill="blue", width=2)
-
-    def draw_graph_command(self, type_='new'):
-        edges = self.current_labirinth_game.edges
-        coords = self.current_labirinth_game.coords
-        self.zz = list(zip(coords[edges], self.current_labirinth_game.game_subgraph.vs()['label'][1:]))
-        if self.CURR_STEP.get() == 0:
-            self.turtle.penup()
-            self.turtle.setposition(self.zz[0][0][0])
-            self.turtle.pendown()
-            self.turtle.pencolor('blue')
-            self.turtle.write(self.current_labirinth_game.start_node, font=('Verdana', 16, 'bold'), align='center')
-            self.turtle.pencolor('black')
-            self.known_locations.update({self.current_labirinth_game.start_node: [self.zz[0][0][[1, 0]], 1]})
-        zz_slice = self.zz[self.LABIRINTH_CONFIG.BRANCHING_NUM.get() * self.CURR_STEP.get():self.LABIRINTH_CONFIG.BRANCHING_NUM.get() * (self.CURR_STEP.get() + 1)]
-        for c, lab in shuffle(zz_slice):
-            self.turtle_run(c, lab)
-
-    def turtle_run(self, c, lab, line='black', text='blue', speed=3):
-        self.turtle.pencolor(line)
-        self.turtle.speed(speed)
-        self.turtle.penup()
-        self.turtle.setposition(c[0])
-        self.turtle.pendown()
-        self.turtle.setposition(c[1])
-        if lab in self.known_locations.keys():
-            self.known_locations[lab][-1] += 1
-        else:
-            self.known_locations.update({lab: [c, 0]})
-        self.turtle.circle(3)
-        self.turtle.pencolor(text)
-        self.turtle.write(lab, font=('Verdana', 16, 'bold'), align='center')
-        self.turtle.pencolor(line)
 
     def adjx(self, x):
         return x + self.CANVAS_WIDTH / 2
@@ -618,22 +623,59 @@ class Gui():
         if self.graph1:
             self.canvas.delete(self.graph1)
 
-    def Start_command(self, ):
-        self.GAME_ON = True
+    def random_first_node(self):
         start_node_probs = np.array(self.current_game_network_filt.degree())
         start_node_probs[start_node_probs == 0] = 1000000
         start_node_probs = 1 / (start_node_probs ** 2)
         start_node_probs = start_node_probs / (sum(start_node_probs))
-        start_node = np.random.choice(self.current_game_network_filt.vs()['label'],
-                                      p=start_node_probs)  ## here we start with the random node
+        start_node = np.random.choice(self.current_game_network_filt.vs()['label'],  p=start_node_probs)
+        return start_node
+
+    def Start_command(self, ):
+        self.GAME_ON = True
+        start_node = self.CUR_F_NODE.get()
+        if start_node=='random':
+            start_node = self.random_first_node()
         self.current_labirinth_game = labirinth_game(self, path_length=self.LABIRINTH_CONFIG.MAX_LENGTH.get(),
-                                                     mode='normal', start_node=start_node)
+                                                     mode='prime', start_node=start_node)
         self.current_labirinth_game.start_game_01()
         self.draw_graph_command()
         self.CURR_INFO.set('Choose right leaf!')
 
-    def Load_network_from_pathway(self, x):
+
+
+    def set_curr_nodes_list(self, x='a'):
+        self.CUR_NODES = ['random']+self.current_game_network_filt.vs()['label']
+        self.CUR_F_NODE.set('random')
+        self.Select_First_Node['menu'].delete(0, 'end')
+        for choice in self.CUR_NODES:
+            self.Select_First_Node['menu'].add_command(label=choice, command=tk._setit(self.CUR_F_NODE, choice,
+                                                                                      self.select_first_node))
+
+    def change_db_command(self, x):
+        self.CUR_PATHWAY.set('')
+        self.PATHWAY_LIST = list(self.prot_names[x].keys())
         print(x)
+        self.Select_Pathway_M['menu'].delete(0, 'end')
+        for choice in self.PATHWAY_LIST:
+            self.Select_Pathway_M['menu'].add_command(label=choice, command=tk._setit(self.CUR_PATHWAY, choice,
+                                                                                      self.Load_network_from_pathway))
+
+    def load_gene_set_function(self, x):
+        self.SELECTED_GENE_SET.set(x.__dict__['widget'].get())
+        self.root.after(1200)
+        genes = self.SELECTED_GENE_SET.get().split()
+        self.SELECTED_GENE_SET.set('')
+        self.Load_network_from_GS(genes)
+        self.set_curr_nodes_list()
+        msg = 'Loaded Users Gene Set!'
+        self.INFO_update(msg, 2000)
+
+    def select_first_node(self, x):
+        self.CUR_F_NODE.set(x)
+
+
+    def Load_network_from_pathway(self, x):
         self.CUR_PATHWAY.set(x)
         pc_proteins = [i for i in self.prot_names[self.CUR_DB.get()][self.CUR_PATHWAY.get()] if
                        i in self.init_pa.nodDct]
@@ -641,6 +683,7 @@ class Gui():
         self.current_game_network = pc_subgraph
         self.current_game_network_filt = pc_subgraph
         self.CURR_SUBNET_SIZE.set(str(len(pc_proteins)))
+        self.set_curr_nodes_list()
 
     def Load_network_from_GS(self, genes):
         print('Gene Set, length:', len(genes))
@@ -649,6 +692,7 @@ class Gui():
         self.current_game_network = pc_subgraph
         self.current_game_network_filt = pc_subgraph
         self.CURR_SUBNET_SIZE.set(str(len(pc_proteins)))
+        self.set_curr_nodes_list()
 
     def set_Ref_filter_value_sele(self, val):
         self.FILTER_REF_NUM_sele = float(val)
@@ -660,6 +704,7 @@ class Gui():
             print('Something Went Wrong')
         self.current_game_network_filt = cur_net_filt
         self.CURR_SUBNET_SIZE.set(str(len(self.current_game_network_filt.vs())))
+        self.set_curr_nodes_list()
 
     def set_Ref_filter_value_init(self, val):
         self.FILTER_REF_NUM_init = float(val)
@@ -671,6 +716,7 @@ class Gui():
             print('Something Went Wrong')
         self.init_network_filt = cur_init_net_filt
         self.CURR_ININET_SIZE.set(str(len(self.init_network_filt.vs())))
+
 
     def make_best_and_worst(self):
         df = self.STATS.stats_proteins.copy()
