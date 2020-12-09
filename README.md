@@ -6,6 +6,7 @@ Learn protein interactions in delineated signaling cascades from (KEGG, SIGNOR, 
 <img src="https://github.com/culpritgene/PLeXuS/blob/master/Resources/PLEXUS_Sreenshot.png" width="620" height="700" />
 
 Currently available modes
+
 <b>Labirinth game</b>
 Pave the path through a mesh of proteins selecting only edges supported by the biological data; help yourself using snippets of functional gene annotations from Uniprot or Ensemble masked on different levels. Store your corrent and incorrect guesses, building personal statstics. 
 
